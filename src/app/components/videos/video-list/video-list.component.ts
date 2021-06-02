@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DataService } from 'services/data.service';
 @Component({
-  selector: 'app-book-list',
-  templateUrl: './book-list.component.html',
-  styleUrls: ['./book-list.component.scss']
+  selector: 'app-video-list',
+  templateUrl: './video-list.component.html',
+  styleUrls: ['./video-list.component.scss']
 })
-export class BookListComponent implements OnInit {
+export class VideoListComponent implements OnInit {
   subscription: Subscription;
   constructor(private dataService: DataService) { }
 

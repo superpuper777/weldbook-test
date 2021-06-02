@@ -6,18 +6,18 @@ import { SharedModule } from './components/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { BookComponent } from './components/books/book/book.component';
-import { BookListComponent } from './components//books/book-list/book-list.component';
-import { FavoriteBooksComponent } from './components//favorite-books/favorite-books.component';
+import { VideoComponent } from './components/videos/video/video.component';
+import { VideoListComponent } from './components/videos/video-list/video-list.component';
+import { FavoritevideosComponent } from './components/favorite-videos/favorite-videos.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    BookComponent,
-    BookListComponent,
-    FavoriteBooksComponent
+    VideoComponent,
+    VideoListComponent,
+    FavoritevideosComponent
   ],
   imports: [
     BrowserModule,
