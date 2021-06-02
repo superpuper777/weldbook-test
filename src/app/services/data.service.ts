@@ -1,3 +1,4 @@
+import { Video } from './../models/video';
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
@@ -8,17 +9,19 @@ import { map } from "rxjs/operators";
 })
 export class DataService {
   key = "AIzaSyAxGX5GKFB4wSl_Xj09ez3ESRaNbnt429Q";
-  
+  videos: Video[] = [];
+  quantity = 25;
   constructor(private httpClient: HttpClient) { }
 
-  get(searchTerm: string) {
+  getVideos(searchTerm: string) {
     return this.httpClient.get(
-      `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=channel&key=${this.key}`
+      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=${this.quantity}&q=${searchTerm}&key=${this.key}`
     )
       .pipe(
         map((response: any) => response.items)
       );
   }
-
-
+  addMoreVideos(): void{
+    this.quantity = this.quantity + 12;
+  }
 }

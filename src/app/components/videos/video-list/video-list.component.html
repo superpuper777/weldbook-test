@@ -1,3 +1,31 @@
 <div class="search">
   <app-search (onEmitSearchTerm)="searchTermChange($event)"></app-search>
 </div>
+
+<div class="search__content">
+  <div *ngFor="let video of videos">
+    <mat-card class="search__content__card">
+      <mat-card-title>{{ video.title }}</mat-card-title>
+      <mat-card-subtitle>{{ video.publishedAt | date }}</mat-card-subtitle>
+      <mat-card-content class="search__content__card-content">
+        <p>{{ video.description }}</p>
+      </mat-card-content>
+      <button
+        class="action"
+        mat-stroked-button
+        color="primary"
+        (click)="addToFavorites(video)"
+      >
+        Add to favorite
+      </button>
+    </mat-card>
+  </div>
+  <button
+    class="action"
+    mat-stroked-button
+    color="primary"
+    (click)="addMoreVideos()"
+  >
+    More videos
+  </button>
+</div>

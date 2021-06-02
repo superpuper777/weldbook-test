@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input'; 
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 
 import { SearchComponent } from './search/search.component';
 
@@ -20,14 +21,17 @@ import { SearchComponent } from './search/search.component';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule
   ],
   exports: [
     SearchComponent,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule],
+    MatIconModule,
+    MatCardModule 
+  ],
 })
 
 export class SharedModule {}
