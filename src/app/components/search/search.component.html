@@ -1,1 +1,7 @@
-<p>search works!</p>
+<mat-form-field appearance="fill" class="search-input">
+  <mat-label class="search-input__label">
+    Search
+    <mat-icon class="search-input__icon">search</mat-icon>
+  </mat-label>
+  <input class="form-control" matInput type="text" [formControl]="searchTerm" />
+</mat-form-field>

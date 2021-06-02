@@ -1,25 +1,33 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BookComponent } from './books/book/book.component';
-import { BookListComponent } from './books/book-list/book-list.component';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input'; 
+import { MatIconModule } from '@angular/material/icon';
+
 import { SearchComponent } from './search/search.component';
-import { FavoriteBooksComponent } from './favorite-books/favorite-books.component';
+
 
 
 @NgModule({
   declarations: [
-    BookComponent,
-    BookListComponent,
     SearchComponent,
-    FavoriteBooksComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule
   ],
-  exports: [],
+  exports: [
+    SearchComponent,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule],
 })
 
 export class SharedModule {}
