@@ -11,17 +11,24 @@ export class DataService {
   key = "AIzaSyAxGX5GKFB4wSl_Xj09ez3ESRaNbnt429Q";
   videos: Video[] = [];
   quantity = 25;
+  nextPageToken = '';
   constructor(private httpClient: HttpClient) { }
 
   getVideos(searchTerm: string) {
     return this.httpClient.get(
       `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=${this.quantity}&q=${searchTerm}&key=${this.key}`
     )
-      .pipe(
-        map((response: any) => response.items)
-      );
+    //   .pipe(
+    //     map((response: any) => this.nextPageToken = response.nextPageToken)
+    // );
+
+    .pipe(
+      map((response: any) => this.nextPageToken = response.items)
+  );
+
   }
-  addMoreVideos(): void{
-    this.quantity = this.quantity + 12;
+  addMoreVideos(): string{
+    // this.quantity = this.quantity + 12;
+    return this.nextPageToken;
   }
 }

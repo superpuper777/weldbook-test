@@ -1,1 +1,11 @@
-<p>favorite-videos works!</p>
+<div class="search__content">
+  <div *ngFor="let video of videos">
+    <mat-card class="search__content__card">
+      <mat-card-title>{{ video.title }}</mat-card-title>
+      <mat-card-subtitle>{{ video.publishedAt | date }}</mat-card-subtitle>
+      <mat-card-content class="search__content__card-content">
+        <p>{{ video.description }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

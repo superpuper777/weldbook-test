@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DataService } from 'services/data.service';
+import { FavoriteService } from './../../../services/favorite.service';
 
 import { Video } from './../../../models/video';
 @Component({
@@ -11,7 +12,8 @@ import { Video } from './../../../models/video';
 export class VideoListComponent implements OnInit {
   subscription: Subscription;
   videos: Video[];
-  constructor(private dataService: DataService) { }
+  nextPageToken;
+  constructor(private dataService: DataService, private favoriteService: FavoriteService) { }
 
   ngOnInit(): void {
   }
@@ -37,11 +39,19 @@ export class VideoListComponent implements OnInit {
   }
 
   addToFavorites(video) {
-    console.log("add to fvr");
+    this.favoriteService.addToFavorite(video);
   }
 
   addMoreVideos() {
-    this.dataService.addMoreVideos();
+
+    // this.nextPageToken= this.dataService.addMoreVideos();
+    // this.subscription = this.dataService
+    //   .getNextVideos(nextPageToken()
+    //   .subscribe((videos) => {
+    //     this.videos = videos;
+    //     console.log(this.videos);
+    //   });
+    
   }
 
 }

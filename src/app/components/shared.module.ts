@@ -6,6 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input'; 
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import {MatTabsModule} from '@angular/material/tabs';
 
 import { SearchComponent } from './search/search.component';
 
@@ -22,7 +24,9 @@ import { SearchComponent } from './search/search.component';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule,
+    MatTabsModule
   ],
   exports: [
     SearchComponent,
@@ -30,7 +34,9 @@ import { SearchComponent } from './search/search.component';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatCardModule 
+    MatCardModule,
+    MatButtonModule,
+    MatTabsModule
   ],
 })
 
