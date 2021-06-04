@@ -3,7 +3,7 @@
 </div>
 
 <div class="search__content">
-  <div *ngFor="let video of videos">
+  <div *ngFor="let video of videos$ | async">
     <mat-card class="search__content__card">
       <mat-card-title>{{ video.title }}</mat-card-title>
       <mat-card-subtitle>{{ video.publishedAt | date }}</mat-card-subtitle>
@@ -21,11 +21,20 @@
     </mat-card>
   </div>
   <button
+    *ngIf="isShow"
     class="search__content__btn"
     mat-raised-button
     color="primary"
-    (click)="addMoreVideos()"
+    (click)="prevVideos()"
   >
-    More videos
+    Prev videos
+  </button>
+  <button
+    class="search__content__btn"
+    mat-raised-button
+    color="primary"
+    (click)="nextVideos()"
+  >
+    Next videos
   </button>
 </div>

@@ -2,7 +2,7 @@ import { Video } from './../models/video';
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { map, tap } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -12,23 +12,29 @@ export class DataService {
   videos: Video[] = [];
   quantity = 25;
   nextPageToken = '';
+  prevPageToken = '';
+  currentTerm;
   constructor(private httpClient: HttpClient) { }
 
-  getVideos(searchTerm: string) {
-    return this.httpClient.get(
-      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=${this.quantity}&q=${searchTerm}&key=${this.key}`
-    )
-    //   .pipe(
-    //     map((response: any) => this.nextPageToken = response.nextPageToken)
-    // );
-
-    .pipe(
-      map((response: any) => this.nextPageToken = response.items)
-  );
-
+  getVideos(searchTerm: string, pageToken = '') {
+    this.currentTerm = searchTerm;
+    const URL = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=${this.quantity}&q=${searchTerm}&key=${this.key}&pageToken=${pageToken}`;
+    return this.httpClient.get(URL)
+      .pipe(
+        map((response: any) => {
+          const { nextPageToken, prevPageToken, items } = response;
+          this.nextPageToken = nextPageToken;
+          this.prevPageToken = prevPageToken ? prevPageToken : '';
+          return items;
+        })
+      );
   }
-  addMoreVideos(): string{
-    // this.quantity = this.quantity + 12;
-    return this.nextPageToken;
+
+  nextVideos() {
+    return this.getVideos(this.currentTerm, this.nextPageToken)
+  }
+
+  prevVideos() {
+    return this.getVideos(this.currentTerm, this.prevPageToken);
   }
 }
