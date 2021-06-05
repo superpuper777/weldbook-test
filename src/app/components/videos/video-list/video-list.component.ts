@@ -11,6 +11,8 @@ import { Video } from './../../../models/video';
   styleUrls: ['./video-list.component.scss']
 })
 export class VideoListComponent implements OnInit {
+  sortItems =  ["date", "rating", "relevance", "title", "videoCount", "viewCount",];
+  selectedSortItem = this.sortItems[1];
   subscription: Subscription;
   videos: Video[];
   videos$
@@ -58,6 +60,21 @@ export class VideoListComponent implements OnInit {
 
   prevVideos() {
     this.videos$ = this.dataService.prevVideos().pipe(
+      map((items) => {
+        return items.map(item => {
+          return {
+            id: item.id.videoId,
+            title: item.snippet.title,
+            description: item.snippet.description,
+            publishedAt: new Date(item.snippet.publishedAt),
+          };
+        });
+      })
+    )
+  }
+
+  sortHandler(value) {
+    this.videos$ = this.dataService.changeOrder(value).pipe(
       map((items) => {
         return items.map(item => {
           return {

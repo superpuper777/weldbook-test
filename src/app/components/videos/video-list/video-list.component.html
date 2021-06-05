@@ -1,6 +1,20 @@
 <div class="search">
   <app-search (onEmitSearchTerm)="searchTermChange($event)"></app-search>
 </div>
+<div class="video_list__select-sort">
+  <mat-form-field appearance="fill">
+    <mat-label>Order by:</mat-label>
+    <mat-select
+      [value]="selectedSortItem"
+      (selectionChange)="sortHandler($event.value)"
+    >
+      <mat-option></mat-option>
+      <mat-option *ngFor="let sort of sortItems" [value]="sort">
+        {{ sort }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
 
 <div class="search__content">
   <div *ngFor="let video of videos$ | async">

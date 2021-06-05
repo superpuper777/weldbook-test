@@ -14,11 +14,14 @@ export class DataService {
   nextPageToken = '';
   prevPageToken = '';
   currentTerm;
+  currentToken;
+  // sortItem = 'rating';
   constructor(private httpClient: HttpClient) { }
 
-  getVideos(searchTerm: string, pageToken = '') {
+  getVideos(searchTerm: string, pageToken = '', sortItem  = 'rating') {
     this.currentTerm = searchTerm;
-    const URL = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=${this.quantity}&q=${searchTerm}&key=${this.key}&pageToken=${pageToken}`;
+    this.currentToken = pageToken;
+    const URL = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=${this.quantity}&q=${searchTerm}&key=${this.key}&pageToken=${pageToken}&order=${sortItem}`;
     return this.httpClient.get(URL)
       .pipe(
         map((response: any) => {
@@ -36,5 +39,10 @@ export class DataService {
 
   prevVideos() {
     return this.getVideos(this.currentTerm, this.prevPageToken);
+  }
+
+  changeOrder(sortItem) {
+    console.log(sortItem)
+    return this.getVideos(this.currentTerm, this.currentToken, sortItem )
   }
 }

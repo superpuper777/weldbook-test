@@ -7,7 +7,8 @@ import {MatInputModule} from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
+import {MatSelectModule} from '@angular/material/select';
 
 import { SearchComponent } from './search/search.component';
 
@@ -26,7 +27,8 @@ import { SearchComponent } from './search/search.component';
     MatIconModule,
     MatCardModule,
     MatButtonModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSelectModule
   ],
   exports: [
     SearchComponent,
@@ -36,7 +38,8 @@ import { SearchComponent } from './search/search.component';
     MatIconModule,
     MatCardModule,
     MatButtonModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSelectModule
   ],
 })
 
