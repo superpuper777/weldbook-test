@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { SharedModule } from './components/shared.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +11,8 @@ import { VideoListComponent } from './components/videos/video-list/video-list.co
 import { FavoritevideosComponent } from './components/favorite-videos/favorite-videos.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
+import { DataInterceptor, MockDataInterceptor } from './data.interceptor';
+import { DataService } from './services/data.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,18 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     
   ],
-  providers: [],
+  providers: [
+    DataService, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: DataInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MockDataInterceptor,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

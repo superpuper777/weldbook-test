@@ -15,7 +15,6 @@ export class DataService {
   prevPageToken = '';
   currentTerm;
   currentToken;
-  // sortItem = 'rating';
   constructor(private httpClient: HttpClient) { }
 
   getVideos(searchTerm: string, pageToken = '', sortItem  = 'rating') {
