@@ -34,21 +34,24 @@
       </button>
     </mat-card>
   </div>
-  <button
-    *ngIf="isShow"
-    class="search__content__btn"
-    mat-raised-button
-    color="primary"
-    (click)="prevVideos()"
-  >
-    Prev videos
-  </button>
-  <button
-    class="search__content__btn"
-    mat-raised-button
-    color="primary"
-    (click)="nextVideos()"
-  >
-    Next videos
-  </button>
+  <div class="search__content__pagination">
+    <button
+      *ngIf="videos$"
+      class="search__content__btn"
+      mat-raised-button
+      color="primary"
+      (click)="prevVideos()"
+    >
+      Prev videos
+    </button>
+    <button
+      *ngIf="videos$"
+      class="search__content__btn"
+      mat-raised-button
+      color="primary"
+      (click)="nextVideos()"
+    >
+      Next videos
+    </button>
+  </div>
 </div>

@@ -2,4 +2,14 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  padding: 0 2rem;
+}
+
+.search__content {
+  &__pagination{
+    margin: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }

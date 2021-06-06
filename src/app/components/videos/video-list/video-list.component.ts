@@ -17,7 +17,7 @@ export class VideoListComponent implements OnInit {
   videos: Video[];
   videos$
   nextPageToken;
-  isShow = false;
+
   constructor(private dataService: DataService, private favoriteService: FavoriteService) { }
 
   ngOnInit(): void {
@@ -44,7 +44,6 @@ export class VideoListComponent implements OnInit {
 
   nextVideos() {
     this.videos$ = this.dataService.nextVideos().pipe(
-      tap(() => this.isShow = !this.isShow),
       map((items) => {
         return items.map(item => {
           return {
