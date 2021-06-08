@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { DataService } from 'services/data.service';
-import { FavoriteService } from './../../../services/favorite.service';
+import { DataService } from '../../../services/data.service';
+import { FavoriteService } from '../../../services/favorite.service';
 import { map, tap } from "rxjs/operators";
 
 import { Video } from './../../../models/video';
@@ -27,12 +27,13 @@ export class VideoListComponent implements OnInit {
     this.videos$ = this.dataService.getVideos(searchTerm).pipe(
       map((items) => {
         return items.map(item => {
-          return {
+          const videoItem  = {
             id: item.id.videoId,
             title: item.snippet.title,
             description: item.snippet.description,
             publishedAt: new Date(item.snippet.publishedAt),
           };
+          return videoItem;
         });
       })
     )
@@ -46,12 +47,13 @@ export class VideoListComponent implements OnInit {
     this.videos$ = this.dataService.nextVideos().pipe(
       map((items) => {
         return items.map(item => {
-          return {
+          const videoItem  = {
             id: item.id.videoId,
             title: item.snippet.title,
             description: item.snippet.description,
             publishedAt: new Date(item.snippet.publishedAt),
           };
+          return videoItem;
         });
       })
     )  
@@ -61,12 +63,13 @@ export class VideoListComponent implements OnInit {
     this.videos$ = this.dataService.prevVideos().pipe(
       map((items) => {
         return items.map(item => {
-          return {
+          const videoItem  = {
             id: item.id.videoId,
             title: item.snippet.title,
             description: item.snippet.description,
             publishedAt: new Date(item.snippet.publishedAt),
           };
+          return videoItem;
         });
       })
     )
@@ -76,12 +79,13 @@ export class VideoListComponent implements OnInit {
     this.videos$ = this.dataService.changeOrder(value).pipe(
       map((items) => {
         return items.map(item => {
-          return {
+          const videoItem  = {
             id: item.id.videoId,
             title: item.snippet.title,
             description: item.snippet.description,
             publishedAt: new Date(item.snippet.publishedAt),
           };
+          return videoItem;
         });
       })
     )
